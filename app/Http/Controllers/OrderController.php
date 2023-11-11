@@ -64,14 +64,12 @@ class OrderController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $data = $request->validate([
-            'tanggal_order' => 'required',
-            'customer_id' => 'required',
-            'kendaraan_id' => 'required',
-        ]);
-        Order::create($data);
+        $order_input = $request->input('order');
+        $order = Order::find($id);
+        $order->kendaraan_id = $order_input; 
+        $order->save();
 
-        return redirect()->route('order')->with('success', 'Order telah ditambahkan');
+        return redirect()->route('order')->with('success', 'Order telah diubah');
     }
 
     /**

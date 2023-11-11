@@ -125,28 +125,12 @@
                                             <div class="form-group" style="width:100%">
 
                                                 <label>Kendaraan </label>
-                                                <input type="hidden" name="id"
-                                                    value="{{ $item->id }}">
-                                                <input type="text" name="alamat"
-                                                    required="required" class="form-control"
-                                                    placeholder={{ $item->alamat }}
-                                                    value="{{ $item->customer }}" style="width:100%">
+                                                <select name="order" class="form-control">
+                                                    @foreach ($kendaraan as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->model }}</option>
+                                                    @endforeach
+                                                </select>
 
-                                                <label>Telpon </label>
-                                                <input type="hidden" name="id"
-                                                    value="{{ $item->id }}">
-                                                <input type="text" name="telpon"
-                                                    required="required" class="form-control"
-                                                    placeholder={{ $item->telpon }}
-                                                    value="{{ $item->customer }}" style="width:100%">
-
-                                                <label>ID Card </label>
-                                                <input type="hidden" name="id"
-                                                    value="{{ $item->id }}">
-                                                <input type="text" name="id_card"
-                                                    required="required" class="form-control"
-                                                    placeholder={{ $item->id_card }}
-                                                    value="{{ $item->customer }}" style="width:100%">
                                             </div>
 
                                         </div>
