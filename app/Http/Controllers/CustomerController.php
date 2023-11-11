@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Kendaraan;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -13,7 +15,9 @@ class CustomerController extends Controller
     public function index()
     {
         $customer = Customer::all();
-        return view('customer',compact('customer'));
+        $order = Order::all();
+        $kendaraan = Kendaraan::all();
+        return view('customer',['customer'=>$customer, 'order'=>$order]);
     }
 
     /**

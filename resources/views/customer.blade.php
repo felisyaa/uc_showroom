@@ -102,15 +102,21 @@
 
                                         @if ($item->id != 0)
                                             <div class="text-center">
-                                                <button type="button" class="btn btn-default btn-sm"
+                                                <button type="button" class="btn btn-warning btn-sm"
+                                                    data-toggle="modal"
+                                                    data-target="#detail_customer_{{ $item->id }}">
+                                                    <i class="fa fa-cog"></i>Detail
+                                                </button>
+
+                                                <button type="button" class="btn btn-warning btn-sm"
                                                     data-toggle="modal"
                                                     data-target="#edit_customer_{{ $item->id }}">
-                                                    <i class="fa fa-cog"></i>
+                                                    <i class="fa fa-cog"></i>Edit
                                                 </button>
 
                                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                                     data-target="#hapus_customer_{{ $item->id }}">
-                                                    <i class="fa fa-trash"></i>
+                                                    <i class="fa fa-trash"></i>Delete
                                                 </button>
                                             </div>
                                         @endif
@@ -126,8 +132,8 @@
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalLabel">Edit customer
                                                             </h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
+                                                            <button type="button" class="close"
+                                                                data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
@@ -221,6 +227,64 @@
                                                 </div>
                                             </div>
                                         </form>
+
+                                        <!-- Modal Detail -->
+                                        <div class="modal fade" id="detail_customer_{{ $item->id }}"
+                                            tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Detail Customer
+                                                        </h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+
+                                                        <h4>{{ $item->nama }}</h4>
+                                                        <p>Alamat: {{ $item->alamat }}</p>
+                                                        <p>Telpon: {{ $item->telpon }}</p>
+                                                        <p>ID Card: {{ $item->id_card }}</p>
+
+                                                        <h5>Orders:</h5>
+                                                        @if ($item->orders->count() > 0)
+                                                            <ul>
+                                                                @php
+                                                                    $totalHarga = 0;
+                                                                @endphp
+
+                                                                @foreach ($item->orders as $order)
+                                                                    @php
+                                                                        $totalHarga += $order->kendaraan->harga;
+                                                                    @endphp
+                                                                    <li>{{ $order->kendaraan->jenis }},
+                                                                        {{ $order->kendaraan->model }},
+                                                                        {{ $order->kendaraan->manufaktur }},
+                                                                        Rp.
+                                                                        {{ number_format($order->kendaraan->harga, 0, ',', '.') }}
+                                                                    </li>
+                                                                @endforeach
+                                                            </ul>
+                                                        @else
+                                                            <p>Pelanggan ini belum melakukan order.</p>
+                                                        @endif
+                                                        @if ($totalHarga > 0)
+                                                        <p>Total Harga: Rp. {{ number_format($totalHarga, 0, ',', '.') }}</p>
+                                                    @endif
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default"
+                                                            data-dismiss="modal"><i class="ti-close m-r-5 f-s-12"></i>
+                                                            Tutup</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
                                     </td>
                                 </tr>
                             @endforeach

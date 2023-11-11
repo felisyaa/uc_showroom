@@ -2,8 +2,15 @@
 <html>
 <head>
     <title>Halaman Beranda</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
+    <ul>
+        <li><a href="#">Beranda</a></li>
+        <li><a href="{{ route('customer') }}">Customer</a></li>
+        <li><a href="{{ route('kendaraan') }}">Kendaraan</a></li>
+        <li><a href="{{ route('order') }}">Order</a></li>
+    </ul>
     <h1>Selamat datang di Aplikasi Kami</h1>
     <p>Ini adalah halaman beranda aplikasi kami.</p>
 

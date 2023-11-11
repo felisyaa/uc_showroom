@@ -30,7 +30,7 @@
 
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="customer_id">Customer</label>
+                            <label for="customer_id">Nama Customer</label>
                             <select name="customer_id" class="form-control">
                                 @foreach ($customer as $item)
                                     <option value="{{ $item->id }}">{{ $item->nama }}</option>
@@ -94,10 +94,13 @@
                                     Edit
                                 </button>
 
-                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                    data-target="#hapus_customer_{{ $item->id }}">
-                                    Delete
-                                </button>
+                                <div class="col-sm">
+                                    <form action="{{ route('orderdelete', $item->id) }}" method="post">
+                                      @csrf
+                                      @method('DELETE')
+                                      <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                </div>
                             </div>
                         @endif
 
@@ -149,8 +152,8 @@
 
                         <!-- modal hapus -->
                         <form method="POST"
-                            action="{{ route('customerdelete', ['id' => $item->id]) }}">
-                            <div class="modal fade" id="hapus_customer_{{ $item->id }}"
+                            action="{{ route('orderdelete', ['id' => $item->id]) }}">
+                            <div class="modal fade" id="hapus_order_{{ $item->id }}"
                                 tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                 aria-hidden="true">
                                 <div class="modal-dialog" role="document">
