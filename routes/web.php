@@ -19,10 +19,10 @@ use App\Http\Controllers\OrderController;
 */
 
 // Route::get('/', function () {
-//     return view('welcome');
+//     return view('dashboard');
 // });
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('dashboard');
 
 Route::get('/customer', [CustomerController::class, 'index'])->name('customer');
 Route::post('/customerstore', [CustomerController::class, 'store'])->name('customerstore');

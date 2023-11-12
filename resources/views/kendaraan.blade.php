@@ -1,3 +1,6 @@
+@extends('home')
+@section('content')
+
 <!DOCTYPE html>
 <html>
 
@@ -242,4 +245,4 @@
         }
     });
 </script>
-
+@endsection

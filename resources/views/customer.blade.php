@@ -1,3 +1,6 @@
+@extends('home')
+@section('content')
+
 <!DOCTYPE html>
 <html>
 
@@ -299,3 +302,4 @@
 </div>
 
 </html>
+@endsection
